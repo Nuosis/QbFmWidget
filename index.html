@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      @import "./src/style.css";
+    </style>
+    <title>JSDev</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body class="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200">
+      <div class="container mx-auto p-4" id="app">
+          <h1 class="text-xl font-bold text-center my-8">QB and FileMaker Data Comparison</h1>
+          
+          <!-- Toggle Dark Mode Button
+          <button id="toggleDarkMode" class="text-slate-600 dark:text-gray-200 font-bold py-2 px-4 rounded mb-4">
+              <span class="material-icons">brightness_4</span>
+          </button>
+          -->
+
+
+          <!-- Data Header -->
+          <div id="dataHeader" class="p-4 bg-white dark:bg-gray-700 rounded shadow mb-4">
+              <!-- Content will be filled by JS -->
+          </div>
+
+          <!-- Line Items -->
+          <div id="itemsContainer" class="container flex flex-grow mx-auto mt-4 overflow-y-auto max-h-screen">
+            <table class="table-auto w-full">
+                <thead>
+                    <tr class="bg-gray-500 text-white dark:text-gray-900">
+                        <th class="px-4 py-2"></th>
+                        <th class="px-4 py-2">Description</th>
+                        <th class="px-4 py-2">Item</th>
+                        <th class="px-4 py-2">Unit Price</th>
+                        <th class="px-4 py-2">Quantity</th>
+                        <th class="px-4 py-2">Tax Status</th>
+                        <th class="px-4 py-2">Amount</th>
+                        <th class="px-4 py-2"></th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Line items will be dynamically inserted here -->
+                </tbody>
+            </table>
+          </div>
+
+          <!-- Control Buttons -->
+
+      </div>
+    <script type="module">
+      import "./src/index.js";
+    </script>
+  </body>
+</html>

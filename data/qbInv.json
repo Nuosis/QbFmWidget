@@ -1,0 +1,146 @@
+{
+	"QueryResponse" : 
+	{
+		"Invoice" : 
+		[
+			{
+				"AllowIPNPayment" : false,
+				"AllowOnlineACHPayment" : false,
+				"AllowOnlineCreditCardPayment" : false,
+				"AllowOnlinePayment" : false,
+				"Balance" : 2931.88,
+				"BillAddr" : 
+				{
+					"City" : "Victoria",
+					"Country" : "CA",
+					"CountrySubDivisionCode" : "BC",
+					"Id" : "349",
+					"Line1" : "2642 Alderglen Place",
+					"PostalCode" : "V9C 3P6"
+				},
+				"BillEmail" : 
+				{
+					"Address" : "admin@category1cleaning.ca"
+				},
+				"CurrencyRef" : 
+				{
+					"name" : "Canadian Dollar",
+					"value" : "CAD"
+				},
+				"CustomField" : [],
+				"CustomerRef" : 
+				{
+					"name" : "Category 1 Cleaning",
+					"value" : "326"
+				},
+				"DeliveryInfo" : 
+				{
+					"DeliveryTime" : "2024-06-19T20:55:03-07:00",
+					"DeliveryType" : "Email"
+				},
+				"DocNumber" : "202406023",
+				"DueDate" : "2024-07-15",
+				"EInvoiceStatus" : "Sent",
+				"EmailStatus" : "EmailSent",
+				"ExchangeRate" : 1,
+				"GlobalTaxCalculation" : "TaxExcluded",
+				"HomeTotalAmt" : 2931.88,
+				"Id" : "1894",
+				"Line" : 
+				[
+					{
+						"Amount" : 1500.0,
+						"Description" : "Cordova Bay Strata on WS General Janitorial",
+						"DetailType" : "SalesItemLineDetail",
+						"Id" : "1",
+						"LineNum" : 1,
+						"SalesItemLineDetail" : 
+						{
+							"ItemRef" : 
+							{
+								"name" : "Cleaning Income:Commercial Cleaning:Regular Clean:Regular Clean Sales",
+								"value" : "2"
+							},
+							"Qty" : 1,
+							"TaxCodeRef" : 
+							{
+								"value" : "4"
+							},
+							"UnitPrice" : 1500
+						}
+					},
+					{
+						"Amount" : 1356.88,
+						"Description" : "The Wave on WS General Janitorial",
+						"DetailType" : "SalesItemLineDetail",
+						"Id" : "3",
+						"LineNum" : 2,
+						"SalesItemLineDetail" : 
+						{
+							"ItemRef" : 
+							{
+								"name" : "Cleaning Income:Commercial Cleaning:Regular Clean:Regular Clean Sales",
+								"value" : "2"
+							},
+							"Qty" : 1,
+							"TaxCodeRef" : 
+							{
+								"value" : "4"
+							},
+							"UnitPrice" : 1356.88
+						}
+					},
+					{
+						"Amount" : 2856.88,
+						"DetailType" : "SubTotalLineDetail",
+						"SubTotalLineDetail" : {}
+					}
+				],
+				"LinkedTxn" : [],
+				"MetaData" : 
+				{
+					"CreateTime" : "2024-06-01T01:01:06-07:00",
+					"LastUpdatedTime" : "2024-06-19T20:55:07-07:00"
+				},
+				"PrintStatus" : "NeedToPrint",
+				"ShipAddr" : 
+				{
+					"Id" : "654",
+					"Line1" : "Category 1 Cleaning",
+					"Line2" : "2642 Alderglen Place",
+					"Line3" : "Victoria BC  V9C 3P6"
+				},
+				"SyncToken" : "2",
+				"TotalAmt" : 2931.88,
+				"TxnDate" : "2024-06-01",
+				"TxnTaxDetail" : 
+				{
+					"TaxLine" : 
+					[
+						{
+							"Amount" : 75.0,
+							"DetailType" : "TaxLineDetail",
+							"TaxLineDetail" : 
+							{
+								"NetAmountTaxable" : 1500.0,
+								"PercentBased" : true,
+								"TaxPercent" : 5,
+								"TaxRateRef" : 
+								{
+									"value" : "5"
+								}
+							}
+						}
+					],
+					"TotalTax" : 75.0
+				},
+				"domain" : "QBO",
+				"sparse" : false
+			}
+		],
+		"maxResults" : 1,
+		"startPosition" : 1,
+		"totalCount" : 1
+	},
+	"time" : "2024-06-25T17:43:49.007-07:00"
+}

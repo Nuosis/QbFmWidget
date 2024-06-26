@@ -1,0 +1,229 @@
+{
+	"QueryResponse" : 
+	{
+		"Bill" : 
+		[
+			{
+				"APAccountRef" : 
+				{
+					"name" : "Accounts Payable",
+					"value" : "42"
+				},
+				"Balance" : 4225.88,
+				"CurrencyRef" : 
+				{
+					"name" : "Canadian Dollar",
+					"value" : "CAD"
+				},
+				"DocNumber" : "202406016",
+				"DueDate" : "2024-07-15",
+				"ExchangeRate" : 1,
+				"GlobalTaxCalculation" : "TaxExcluded",
+				"Id" : "1887",
+				"Line" : 
+				[
+					{
+						"AccountBasedExpenseLineDetail" : 
+						{
+							"AccountRef" : 
+							{
+								"name" : "5011 Preferred - Cost of Goods Sold:Cleaning - COGS expense:Regular Cleaning Expense",
+								"value" : "146"
+							},
+							"BillableStatus" : "NotBillable",
+							"TaxCodeRef" : 
+							{
+								"value" : "4"
+							}
+						},
+						"Amount" : 1976.55,
+						"Description" : "Borden House Corp on WS Revised 2022",
+						"DetailType" : "AccountBasedExpenseLineDetail",
+						"Id" : "1",
+						"LineNum" : 1
+					},
+					{
+						"AccountBasedExpenseLineDetail" : 
+						{
+							"AccountRef" : 
+							{
+								"name" : "5011 Preferred - Cost of Goods Sold:Cleaning - COGS expense:Regular Cleaning Expense",
+								"value" : "146"
+							},
+							"BillableStatus" : "NotBillable",
+							"TaxCodeRef" : 
+							{
+								"value" : "4"
+							}
+						},
+						"Amount" : 1125.0,
+						"Description" : "Cordova Bay Strata on WS General Janitorial",
+						"DetailType" : "AccountBasedExpenseLineDetail",
+						"Id" : "3",
+						"LineNum" : 2
+					},
+					{
+						"AccountBasedExpenseLineDetail" : 
+						{
+							"AccountRef" : 
+							{
+								"name" : "5011 Preferred - Cost of Goods Sold:Cleaning - COGS expense:Regular Cleaning Expense",
+								"value" : "146"
+							},
+							"BillableStatus" : "NotBillable",
+							"TaxCodeRef" : 
+							{
+								"value" : "4"
+							}
+						},
+						"Amount" : 1017.66,
+						"Description" : "The Wave on WS General Janitorial",
+						"DetailType" : "AccountBasedExpenseLineDetail",
+						"Id" : "4",
+						"LineNum" : 3
+					},
+					{
+						"AccountBasedExpenseLineDetail" : 
+						{
+							"AccountRef" : 
+							{
+								"name" : "5011 Preferred - Cost of Goods Sold:Cleaning - COGS expense:Regular Cleaning Expense",
+								"value" : "146"
+							},
+							"BillableStatus" : "NotBillable",
+							"TaxCodeRef" : 
+							{
+								"value" : "4"
+							}
+						},
+						"Amount" : 203.53,
+						"Description" : "Thomas and Birch on WS Douglas Rd",
+						"DetailType" : "AccountBasedExpenseLineDetail",
+						"Id" : "5",
+						"LineNum" : 4
+					},
+					{
+						"AccountBasedExpenseLineDetail" : 
+						{
+							"AccountRef" : 
+							{
+								"name" : "4300 Preferred Income Clearing Account",
+								"value" : "231"
+							},
+							"BillableStatus" : "NotBillable",
+							"TaxCodeRef" : 
+							{
+								"value" : "6"
+							}
+						},
+						"Amount" : -100.0,
+						"Description" : "Joel Guino Payment on Account",
+						"DetailType" : "AccountBasedExpenseLineDetail",
+						"Id" : "6",
+						"LineNum" : 5
+					},
+					{
+						"AccountBasedExpenseLineDetail" : 
+						{
+							"AccountRef" : 
+							{
+								"name" : "2401 Cleaner Savings",
+								"value" : "222"
+							},
+							"BillableStatus" : "NotBillable",
+							"TaxCodeRef" : 
+							{
+								"value" : "6"
+							}
+						},
+						"Amount" : -29.0,
+						"Description" : "Joel Guino Insurance Withholdings",
+						"DetailType" : "AccountBasedExpenseLineDetail",
+						"Id" : "7",
+						"LineNum" : 6
+					},
+					{
+						"AccountBasedExpenseLineDetail" : 
+						{
+							"AccountRef" : 
+							{
+								"name" : "4300 Preferred Income Clearing Account",
+								"value" : "231"
+							},
+							"BillableStatus" : "NotBillable",
+							"TaxCodeRef" : 
+							{
+								"value" : "6"
+							}
+						},
+						"Amount" : -84.0,
+						"Description" : "Joel Guino Admin Fee Payment",
+						"DetailType" : "AccountBasedExpenseLineDetail",
+						"Id" : "8",
+						"LineNum" : 7
+					},
+					{
+						"AccountBasedExpenseLineDetail" : 
+						{
+							"AccountRef" : 
+							{
+								"name" : "2401 Cleaner Savings",
+								"value" : "222"
+							},
+							"BillableStatus" : "NotBillable",
+							"TaxCodeRef" : 
+							{
+								"value" : "6"
+							}
+						},
+						"Amount" : -100.0,
+						"Description" : "Joel Guino Payment Withholdings",
+						"DetailType" : "AccountBasedExpenseLineDetail",
+						"Id" : "9",
+						"LineNum" : 9
+					}
+				],
+				"MetaData" : 
+				{
+					"CreateTime" : "2024-06-01T00:58:47-07:00",
+					"LastUpdatedTime" : "2024-06-25T00:56:41-07:00"
+				},
+				"SyncToken" : "8",
+				"TotalAmt" : 4225.88,
+				"TxnDate" : "2024-06-01",
+				"TxnTaxDetail" : 
+				{
+					"TaxLine" : 
+					[
+						{
+							"Amount" : 216.14,
+							"DetailType" : "TaxLineDetail",
+							"TaxLineDetail" : 
+							{
+								"NetAmountTaxable" : 4322.74,
+								"PercentBased" : true,
+								"TaxPercent" : 5,
+								"TaxRateRef" : 
+								{
+									"value" : "4"
+								}
+							}
+						}
+					],
+					"TotalTax" : 216.14
+				},
+				"VendorRef" : 
+				{
+					"name" : "Joel Guino vendor",
+					"value" : "232"
+				},
+				"domain" : "QBO",
+				"sparse" : false
+			}
+		],
+		"maxResults" : 1,
+		"startPosition" : 1,
+		"totalCount" : 1
+	},
+	"time" : "2024-06-25T20:05:58.301-07:00"
+}

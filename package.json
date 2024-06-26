@@ -1,0 +1,26 @@
+{
+  "name": "QbFmWidget",
+  "version": "1.0.0",
+  "author": "CBS",
+  "license": "MIT",
+  "description": "Solving a client problem",
+  "scripts": {
+    "start": "node --trace-deprecation ./node_modules/.bin/parcel index.html --no-source-maps",
+    "reload": "node ./scripts/reload-dev",
+    "deploy-to-fm": "npm run build && npm run upload",
+    "build": "parcel build index.html",
+    "upload": "node ./scripts/upload"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "open": "^8.2.1",
+    "parcel": "^2.12.0",
+    "postcss": "^8.4.38",
+    "prettier": "2.6.2",
+    "tailwindcss": "^3.4.4"
+  },
+  "widgetType": "JS"
+}
