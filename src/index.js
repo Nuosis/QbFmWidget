@@ -1,50 +1,235 @@
-import invRecordsJOIN from "../data/InvRecordJOIN.json"
-import invRecords from "../data/InvRecords.json"
-import qbBill from "../data/qbBill.json"
-import qbInv from "../data/qbInv.json"
+import InvRecordsJOIN from "../data/InvRecordJOIN.json"
+import InvRecords from "../data/InvRecords.json"
+import Inv from "../data/Inv.json"
+import { queryQBO } from '../ClarityAPI/clarityApiQBO';
 
-const obj = {
-  qbObj: qbBill,
-  invRecords: invRecords,
-  invRecordsJOIN
+console.log('version', "1.0.0");
+
+let invRecords = InvRecords
+let invRecordsJOIN = InvRecordsJOIN
+let inv = Inv
+let type = "Bill"
+
+
+
+let obj = {
+  type,
+  inv,
+  invRecords,
+  invRecordsJOIN,
+  qbNo: ""
 }
 
-//ELEMENTS
-function createHeader(data) {
-  //process and parse data
-  const type = extractTypeFromQBData(data) 
-  if (!type) {
-    console.error('No valid type key found in QueryResponse');
-    return; // Exit if no type key found
-  } 
-  const record = data.QueryResponse[type][0]
-  
-  //render
-  const headerDiv = document.createElement('div');
-  headerDiv.className = 'header';
-  if(type==="Invoice"){
-    headerDiv.innerHTML = `<div class="pb-2 text-3xl">${type} Details</div>
-        <div class="flex flex-row mt-2 gap-4">
-          <p><strong>Customer:</strong> ${record.CustomerRef.name}</p>
-          <p><strong>Doc Number:</strong> ${record.DocNumber}</p>
-          <p><strong>Date:</strong> ${record.TxnDate}</p>
-          <p><strong>Total Amount:</strong> $${record.TotalAmt}</p>
-        </div>`;
-    document.getElementById('dataHeader').appendChild(headerDiv);
-  } else {
-    headerDiv.innerHTML = `<div class="pb-2 text-3xl">${type} Details</div>
-        <div class="flex flex-row mt-2 gap-4">
-          <p><strong>Customer:</strong> ${record.VendorRef.name}</p>
-          <p><strong>Doc Number:</strong> ${record.DocNumber}</p>
-          <p><strong>Date:</strong> ${record.TxnDate}</p>
-          <p><strong>Total Amount:</strong> $${record.TotalAmt}</p>
-        </div>`;
-    document.getElementById('dataHeader').appendChild(headerDiv);
+let state= {
+  qbType: obj.type
+}
+
+//GLOBAL FUNCTIONS
+
+/**
+ * setQbData
+ * @param {data} Object 
+ * 
+ * Workflow should be.
+ *    declare default type
+ *    use inv to get inv/bill nos based on type
+ *    if init, load first inv/bill no
+ *    get qbObj based on inv/bill no
+ *    load line items
+ */
+window.setQbData = function(data) {
+  addControls()
+  const obj = JSON.parse(data);
+  invRecords = obj.invRecords;
+  invRecordsJOIN = obj.invRecordsJOIN;
+  inv = obj.inv;
+  const invNos = inv.filter(item => item.fieldData.type === "Invoice").map(item => item.fieldData.InvoiceNo);
+  const billNos = inv.filter(item => item.fieldData.type === "Bill").map(item => item.fieldData.InvoiceNo);
+  obj.type === "Invoice" ? qbNo = invNos[0]: qbNo = billNos[0]
+  obj.qbNo = qbNo
+  createHeader(state.qbType, qbNo);
+  ;
+}
+
+/**
+ * setType
+ * @param {type} string
+ * 
+ * Workflow should be.
+ *    update state type
+ *    call setQbData(Obj)
+ */
+window.setType = function(type) {
+  console.log("setType function called");
+  obj.type = type
+  // console.log({obj});
+  createHeader(obj.type)
+}
+
+
+
+//FUNCTIONS
+
+function sortFunction() {
+  console.log("Sort function called");
+  // Implementation of the sort functionality
+}
+
+function findDuplicates() {
+  console.log("Find duplicates function called");
+  // Implementation of finding duplicates
+}
+
+function showInfo() {
+  console.log("Show info function called");
+  // Implementation of showing info
+}
+
+function updateData() {
+  console.log("Update data function called");
+  // Implementation of updating data
+}
+
+/*
+function extractTypeFromQBData(qbData) {
+  const { QueryResponse } = qbData;
+  const keys = Object.keys(QueryResponse);
+  const nonTypeKeys = ['maxResults', 'startPosition', 'totalCount'];
+  const typeKey = keys.find(key => !nonTypeKeys.includes(key));
+  return typeKey;
+}*/
+
+function getNestedProperty(object, path, defaultValue) {
+  return path.reduce((xs, x) => (xs && xs[x] != null ? xs[x] : defaultValue), object);
+}
+
+async function getQbObj(type,qbNo) {
+  //get qbObj based on inv/bill no
+  let result
+  try{
+    const table=`${type}`
+    const query = [{
+      key: "DocNumber",
+      operator: "=",
+      value: qbNo
+    }]
+    result = await queryQBO(table,query)
+    return JSON.parse(result)
+  } catch (error) {
+    console.error('Error querying QBO:', error);
+    return error
   }
 }
 
+//ELEMENTS
+async function createHeader(type, qbNo) {
+/**
+ *    
+ *    load line items
+ */
+
+
+  // confirm type
+  if (!type) {
+    console.error('No valid type key provided');
+    return; // Exit if no type key found
+  }
+
+  const offType = type === "Invoice" ? "Bill" : "Invoice";
+  
+  //get qbObj based on inv/bill no
+  data = await getQbObj(type,qbNo)
+  console.log({data})
+
+  if (!data || !data.QueryResponse || !data.QueryResponse[type] || !data.QueryResponse[type][0]) {
+    console.error('Invalid response structure:', data);
+    return;
+  }
+
+  const record = data.QueryResponse[type][0];
+
+  inv = obj.inv;
+  const invNos = inv.filter(item => item.fieldData.type === "Invoice").map(item => item.fieldData.InvoiceNo);
+  const billNos = inv.filter(item => item.fieldData.type === "Bill").map(item => item.fieldData.InvoiceNo);
+  // Render
+  try {
+    const oldDataHeader = document.getElementById('dataHeader');
+    const oldButtonHeader = document.getElementById('buttonHeader');
+    
+    if (oldDataHeader) {
+        oldDataHeader.parentNode.removeChild(oldDataHeader);
+        console.log("dataHeader div removed");
+    }
+    
+    if (oldButtonHeader) {
+        oldButtonHeader.parentNode.removeChild(oldButtonHeader);
+        console.log("buttonHeader div removed");
+    }
+  } catch (error) {
+      console.log("div does not exist. Proceed");
+  }
+  const headerDiv = document.createElement('div');
+  headerDiv.className = 'header w-4/5';
+  headerDiv.id = 'dataHeader';  // Corrected to use string for ID
+
+  let customerField = type === "Invoice" ? record.CustomerRef.name : record.VendorRef.name;
+  headerDiv.innerHTML = `<div class="pb-2 text-3xl">${type} Details</div>
+      <div class="flex flex-row mt-2 gap-4">
+        <p><strong>Customer:</strong> ${customerField}</p>
+        <p><strong>Doc Number:</strong> ${record.DocNumber}</p>
+        <p><strong>Date:</strong> ${record.TxnDate}</p>
+        <p><strong>Total Amount:</strong> $${record.TotalAmt}</p>
+      </div>`;
+
+  document.getElementById('Header').appendChild(headerDiv);
+
+  const headerButtonDiv = document.createElement('div');
+  headerButtonDiv.className = `headerButtons w-1/5 flex flex-row gap-2`;
+  headerButtonDiv.id = 'buttonHeader';  // Corrected to use string for ID
+
+  // Prepare the dropdown options based on the type
+  const dropdown = document.createElement('select');
+  dropdown.className = 'cursor-pointer dark:bg-gray-800';
+  dropdown.addEventListener('change', function() {
+    createHeader(type, this.value);
+  });
+
+  if (type === "Invoice") {
+      invNos.forEach(no => {
+          const option = document.createElement('option');
+          option.value = no;
+          option.textContent = no;
+          dropdown.appendChild(option);
+      });
+  } else if (type === "Bill") {
+      billNos.forEach(no => {
+          const option = document.createElement('option');
+          option.value = no;
+          option.textContent = no;
+          dropdown.appendChild(option);
+      });
+  }
+
+  // Set the value of the dropdown after appending all options
+  dropdown.value = qbNo;
+
+  headerButtonDiv.innerHTML = `
+      <span class="material-icons cursor-pointer" onclick="setType('${offType}')">
+          radio_button_checked
+      </span>
+      <div class="cursor-pointer" onclick="setType('${offType}')">${type}</div>
+
+  `;
+  // Append the dropdown last to ensure it appears at the end
+  headerButtonDiv.appendChild(dropdown);
+  document.getElementById('Header').appendChild(headerButtonDiv);
+
+  //create lines
+  createLineItems(data)
+}
+
 function createLineItems(data) {
-  const type = extractTypeFromQBData(data) 
+  const type = obj.type 
   if (!type) {
     console.error('No valid type key found in QueryResponse');
     return; // Exit if no type key found
@@ -173,79 +358,5 @@ function addControls() {
       <button class="py-2 px-4 bg-blue-500 opacity-75 dark:bg-cyan-800 text-white dark:text-gray-300 rounded-md" onclick="updateItems()">Update</button>`;
   document.getElementById('app').appendChild(controlsDiv);
 }
-
-/**
-//Dark Mode
-document.getElementById('toggleDarkMode').addEventListener('click', function() {
-  const icon = this.querySelector('.material-icons');
-  console.log({icon})
-  const currentTheme = document.body.classList.toggle('dark');
-
-  // Switch the icon based on the theme
-  if (currentTheme) {
-      icon.textContent = 'brightness_7'; // sun icon for light mode
-      console.log('Switched to dark mode');
-  } else {
-      icon.textContent = 'brightness_4'; // moon icon for dark mode
-      console.log('Switched to light mode');
-  }
-});
-
-// Optional: Automatically set theme based on user preferences or a stored setting
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  // It's a dark theme by user preference
-  document.body.classList.add('dark');
-  document.getElementById('toggleDarkMode').querySelector('.material-icons').textContent = 'brightness_7';
-}
- */
-
-
-//GLOBAL FUNCTIONS
-window.setQbData = function(data) {
-  console.log('version', "1.0.0");
-  const jsonData = JSON.parse(data);
-  console.log({jsonData});
-  createHeader(jsonData.qbObj);
-  createLineItems(jsonData.qbObj);
-  addControls();
-  console.log('version', "1.0.0");
-}
-
-
-
-//FUNCTIONS
-function sortFunction() {
-  console.log("Sort function called");
-  // Implementation of the sort functionality
-}
-
-function findDuplicates() {
-  console.log("Find duplicates function called");
-  // Implementation of finding duplicates
-}
-
-function showInfo() {
-  console.log("Show info function called");
-  // Implementation of showing info
-}
-
-function updateData() {
-  console.log("Update data function called");
-  // Implementation of updating data
-}
-
-function extractTypeFromQBData(qbData) {
-  const { QueryResponse } = qbData;
-  const keys = Object.keys(QueryResponse);
-  const nonTypeKeys = ['maxResults', 'startPosition', 'totalCount'];
-  const typeKey = keys.find(key => !nonTypeKeys.includes(key));
-  return typeKey;
-}
-
-function getNestedProperty(object, path, defaultValue) {
-  return path.reduce((xs, x) => (xs && xs[x] != null ? xs[x] : defaultValue), object);
-}
-
-
 
 setQbData(JSON.stringify(obj))

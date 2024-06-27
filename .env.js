@@ -1,0 +1,3 @@
+export const config = {
+    NODE_TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiIzMDI2ODkwZDk5N2VjMDMxNWVjZjE0NzZkODEwYWY0MjY0YjYyNjFmNzI0MjZmMDlkZjJkNGQzNzIyZDYxODE4IiwidXNlck5hbWUiOiJtc0RldiIsImFjY2VzcyI6ImFkbWluIiwiaWF0IjoxNzAyODczOTgzfQ.mGfee_VFXrurW80kiB4_YJw8Qc83M_2MpSV3TVYPJWc'
+};
