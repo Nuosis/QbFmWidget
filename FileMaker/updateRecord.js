@@ -6,8 +6,8 @@ async function updateRecord(token, params, layout, recordID) {
     // params{"fieldData": {},}
     const payloadData = {
         method: "editRecord",
-        server: "server.selectjanitorial.com",
-        database: "clarityData",
+        server: "server.claritybusinesssolutions.ca",
+        database: "PREFERRED SERVER VICTORIA",
         layout,
         recordID,
         params

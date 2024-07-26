@@ -27,8 +27,8 @@ async function readRecord(token, params, layout) {
     // Prepare the data for the API call
     const payloadData = {
         method: "findRecord",
-        server: "server.selectjanitorial.com",
-        database: "clarityData",
+        server: "server.claritybusinesssolutions.ca",
+        database: "PREFERRED SERVER VICTORIA",
         layout,
         params
     };

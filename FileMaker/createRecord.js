@@ -6,7 +6,7 @@ async function createRecord(token, params, layout, returnRecord) {
     const bodyData = {
         method: "createRecord",
         server: "server.claritybusinesssolutions.ca",
-        database: "clarityData",
+        database: "PREFERRED SERVER VICTORIA",
         layout,
         params
     };
